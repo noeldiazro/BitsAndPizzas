@@ -2,7 +2,10 @@ package es.montanus.bitsandpizzas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +22,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
+
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                switch (position) {
+                    case 0:
+                        return new TopFragment();
+                    case 1:
+                        return new PizzaFragment();
+                    case 2:
+                        return new PastaFragment();
+                    case 3:
+                        return new StoresFragment();
+                    default:
+                        return null;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 4;
+            }
+        });
     }
 
     @Override

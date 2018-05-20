@@ -3,6 +3,8 @@ package es.montanus.bitsandpizzas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.*;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -21,10 +23,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(makeAdapter());
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 
     @NonNull
@@ -54,6 +60,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public int getCount() {
                 return 4;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                switch (position) {
+                    case 0:
+                        return getTitleFromResources(R.string.home_tab);
+                    case 1:
+                        return getTitleFromResources(R.string.pizza_tab);
+                    case 2:
+                        return getTitleFromResources(R.string.pasta_tab);
+                    case 3:
+                        return  getTitleFromResources(R.string.store_tab);
+                    default:
+                        return null;
+                }
+            }
+
+            @NonNull
+            private String getTitleFromResources(@StringRes int titleId) {
+                return getResources().getString(titleId);
             }
         };
     }

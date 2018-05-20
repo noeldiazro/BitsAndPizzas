@@ -1,6 +1,7 @@
 package es.montanus.bitsandpizzas;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,6 +22,17 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     public void onClickDone(View view) {
-        Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show();
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator),
+                R.string.order_updated,
+                Snackbar.LENGTH_SHORT);
+        snackbar.setAction(R.string.undo, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(OrderActivity.this,
+                        R.string.undone,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        snackbar.show();
     }
 }

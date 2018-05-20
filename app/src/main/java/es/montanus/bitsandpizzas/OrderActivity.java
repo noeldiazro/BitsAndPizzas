@@ -16,7 +16,6 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void enableUpButton() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

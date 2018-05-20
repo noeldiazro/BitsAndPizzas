@@ -2,8 +2,8 @@ package es.montanus.bitsandpizzas;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.annotation.NonNull;
+import android.support.v4.app.*;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +24,17 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        pager.setAdapter(makeAdapter());
+    }
+
+    @NonNull
+    private FragmentPagerAdapter makeAdapter() {
+        return makeAdapter(getSupportFragmentManager());
+    }
+
+    @NonNull
+    private FragmentPagerAdapter makeAdapter(FragmentManager fragmentManager) {
+        return new FragmentPagerAdapter(fragmentManager) {
             @Override
             public Fragment getItem(int position) {
                 switch (position) {
@@ -45,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public int getCount() {
                 return 4;
             }
-        });
+        };
     }
 
     @Override

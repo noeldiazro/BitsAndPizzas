@@ -21,6 +21,7 @@
     <string name="order_updated">Your order has been updated</string>
     <string name="undo">Undo</string>
     <string name="undone">Undone!</string>
+    <string name="pizza_image">Pizza Image</string>
 
     <string-array name="pizzas">
         <item>Diavolo</item>
